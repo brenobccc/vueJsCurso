@@ -1,0 +1,32 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+	<input type="text" v-on:input="alterarTitulo">
+	<!-- v-on: irá informar que quando eu usar o evento input eu irei utilizar a funcao determinada(no caso alterar Titulo) que está na minha instancia Vue. -->
+	<p>
+		{{ titulo }}
+	</p>
+</div>
+
+
+<script>
+
+	new Vue({
+		el: '#app',
+		data: {
+			titulo: '	Usando VueJS 2!'
+		},
+		methods: {
+			/*
+			alterarTitulo: function(){
+
+			}
+			ou:
+			*/
+			alterarTitulo(event){//function for change my title
+				this.titulo = event.target.value
+			}
+		}
+	})
+
+</script>
