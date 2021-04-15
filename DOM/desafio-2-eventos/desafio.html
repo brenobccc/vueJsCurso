@@ -1,0 +1,40 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <!-- 1 -->
+    <div>
+        <button v-on:click="buttonPressed">Exibir Alerta</button>
+    </div>
+    <!-- 2 -->
+    <div>
+
+        <!-- modificador de acesso -->
+        <input type="text" v-on:keydown="armazenar">
+        <p> {{ valor }}</p>
+    </div>
+
+    <div>
+
+        <!-- modificador de acesso -->
+        <input type="text" v-on:keydown.enter="armazenar">
+        <p> {{ valor }}</p>
+    </div>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            valor: 'vazio'
+        },
+        methods: {
+            buttonPressed() {
+                alert("Botao foi clicado");
+            },
+            armazenar(event) {
+                this.valor = event.target.value;
+            }
+        }
+    })
+</script>

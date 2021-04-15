@@ -17,10 +17,14 @@
     </p>
     <a v-on:click.prevent="" href="http://google.com">link Google com o prevent</a>
     <br>
-    <a v-on:click="" href="http://google.com">link Google sem o prevent</a>
+    <a v-on:click.="" href="http://google.com">link Google sem o prevent</a>
 
-    <a v-on:click="naoNavegar" href="http://google.com">link Google sem o prevent</a>
-</div>
+    <a v-on:click.="naoNavegar" href="http://google.com">link Google sem o prevent</a>
+    <hr>
+    <!-- <input type="text" v-on:keyup="exibirAlerta"> irá exibir um alert ao escrever um caractere ou apagar o mesmo--> 
+  <!-- modificador de acesso -->  <input type="text" v-on:keyup.enter="exibirAlerta"><!-- Só irá exibir o alert quando apertarmos um ENTER-->
+   <!-- <input type="text" v-on:keyup.enter.alt="exibirAlerta"> só irá executar a funcao quando digitarmos as duas teclas definidas(enter+alt)-->
+]</div>
 
 <script>
     new Vue({
@@ -31,6 +35,9 @@
             y: 0,
         },
         methods: {
+            exibirAlerta(){
+                 alert('Estou te alertando')
+            },
             somar(num, ev) {
                 console.log(num,ev)
                 this.contador+=num;
