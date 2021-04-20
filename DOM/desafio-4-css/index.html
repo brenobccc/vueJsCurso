@@ -1,0 +1,68 @@
+<style>
+    .destaque {
+        background-color: orange;
+        height: 200px;
+        width: 200px;
+    }
+
+    .encolher {
+        background-color: rgb(255, 38, 0);
+        height: 100px;
+        width: 100px;
+    }
+
+    .cor {
+        background-color: yellow;
+    }
+
+    .tamanho {
+        width: 25px;
+    }
+
+    .quadrado {
+        background-color: green;
+        height: 50px;
+    }
+
+    .box {
+        background-color: black;
+        height: 50px;
+        width: 50px;
+    }
+
+    .box1 {
+        background-color: orange;
+        height: 60px;
+        width: 60px;
+    }
+</style>
+
+
+<script src="https://unpkg.com/vue"></script>
+
+
+<div id="desafio">
+    <button @click="iniciarEfeito"> Alternar </button>
+    <center>
+
+        <div id="efeito" :class="classe1">
+        </div>
+    </center>
+
+
+    <div>#02</div>
+    <div :class="[tamanho,cor, 'quadrado']">Estou sem classe CSS</div>
+
+
+    <div>
+        #03
+    </div>
+    <br>
+    <div :class="classe">box here</div>
+    <input type="text" v-model="classe">
+</div>
+
+
+
+
+<script src="app.js"></script>
