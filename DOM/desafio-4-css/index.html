@@ -1,68 +1,156 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+</head>
 <style>
-    .destaque {
-        background-color: orange;
-        height: 200px;
-        width: 200px;
+    .box1 {
+        height: 80;
+        width: 80;
+        background-color: green;
     }
 
-    .encolher {
-        background-color: rgb(255, 38, 0);
-        height: 100px;
-        width: 100px;
+    .box2 {
+        height: 80;
+        width: 80;
+        background-color: greenyellow;
     }
 
-    .cor {
-        background-color: yellow;
+    .box3 {
+        height: 80;
+        width: 80;
+        background-color: rgb(236, 110, 205);
     }
 
-    .tamanho {
-        width: 25px;
+    .perigo {
+        background-color: red;
     }
 
     .quadrado {
-        background-color: green;
-        height: 50px;
+        width: 100px;
+        height: 100px;
     }
 
-    .box {
-        background-color: black;
-        height: 50px;
-        width: 50px;
+    .destaque {
+        height: 80;
+        width: 80;
+        background-color: red;
     }
 
-    .box1 {
+    .encolher {
+        height: 50;
+        width: 50;
         background-color: orange;
-        height: 60px;
-        width: 60px;
+    }
+
+    .cor {
+        background-color: blueviolet;
+        color: white;
+    }
+
+    .size {
+        width: 80;
+        height: 80;
+    }
+
+    .barra-progresso {
+        height: 30px;
+        width: 500px;
+        border: 1px solid #000;
+    }
+
+    .progresso {
+        background-color: red;
+        height: 100%;
     }
 </style>
 
+<div id="app">
 
-<script src="https://unpkg.com/vue"></script>
+    <!--
+        1 
+    -->
+    <div @click="alternar()" :class="efeito">
+    </div>
+    <!--
+        2
+    -->
+    <div :class="['cor','size']">
+        <center>testando</center>
+    </div>
+    <!-- 3 -->
+
+    <div :class="minhaClasse">
+
+    </div>
+    <input type="text" v-model="minhaClasse">
+
+    <!-- 4 -->
+    <br>
+
+    <h2>#04</h2>
+    <div>
+        <input type="text" v-model="classe4">
+        <input type="text" @input="setPerigo">
+        <div :class="[classe4, {perigo}]"></div>
+    </div>
 
 
-<div id="desafio">
-    <button @click="iniciarEfeito"> Alternar </button>
-    <center>
+    <h2>#05</h2>
+    <div :style="[estilo5, {backgroundColor: cor5}]">
 
-        <div id="efeito" :class="classe1">
-        </div>
-    </center>
+    </div>
+    <input type="text" v-model="cor5">
 
-
-    <div>#02</div>
-    <div :class="[tamanho,cor, 'quadrado']">Estou sem classe CSS</div>
-
+    <h2>#06</h2>
 
     <div>
-        #03
+        <button @click="iniciarProgresso">Iniciar </button>
+        <div class="barra-progresso">
+            <div class="progresso" :style="{width}"></div>
+        </div>
     </div>
-    <br>
-    <div :class="classe">box here</div>
-    <input type="text" v-model="classe">
 </div>
+<script>
 
-
-
-
-<script src="app.js"></script>
+    new Vue({
+        el: "#app",
+        data: {
+            perigo: true,
+            classe3: '',
+            efeito: 'destaque',
+            minhaClasse: '',
+            classe4: '',
+            cor5: '',
+            estilo5: {
+                width: '100px',
+                height: '100px',
+            },
+            width: '0'
+        },
+        methods: {
+            alternar() {
+                setInterval(() => {
+                    this.efeito = this.efeito == 'destaque' ? 'encolher' : 'destaque'
+                }, 2000)
+            },
+            iniciarProgresso() {
+                console.log("testando");
+                let value = 0;
+                const temporizador = setInterval(() => {
+                    value++;
+                    console.log('teste2')
+                    this.width = value+'%';
+                    if (value == 100) clearInterval(temporizador)
+                }, 50)
+            },
+            setPerigo(event) {
+                if (event.target.value == "true") {
+                    this.perigo = true
+                } else if (event.target.value == "false") {
+                    this.perigo = false
+                }
+            }
+        }
+    })
+</script>
