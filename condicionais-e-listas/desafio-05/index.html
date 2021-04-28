@@ -1,0 +1,81 @@
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+
+
+
+<div id='app'>
+    <!--
+        1) Ligue o botão para alternar a exibição dos dois parageafos, 
+        Use ambos v-if e v-show e inspecione os elementos para ver a 
+        diferença
+    -->
+    <button v-on:click="alternarBoolean()" style="background-color: orange; color: white;">
+        Aperte aqui para alterar o valor
+    </button>
+
+    <p v-show="first_SHOWcontroll"> (v-show)Está true </p>
+    <p v-show="first_SHOWcontroll"> (v-show)Está false </p>
+
+    <p v-if="first_IFcontroll"> (v-if)Está true </p>
+    <p v-else> (v-else)Está false </p>
+
+    <!-- item 2 
+    Exiba em um <ul> um array de elementos 
+    da sua escolha, imprima tambem o indice de cada elemento
+    
+    -->
+    <h2>#02</h2>
+    <ul>
+        <l1 v-for="(valor,i) in array">indice: {{i}} value: {{valor}} <br></l1>
+
+    </ul>
+
+
+ 
+    <h2>#03</h2>
+    <ul>
+        <li v-for="(valor, chave, indice) in livro">{{ chave }}: {{ valor }} - {{ indice }} <br></li>
+
+    </ul>
+ 
+    <h2>#03</h2>
+    <ul>
+        <li v-for="valor in aluno"> 
+            <template v-if="!Array.isArray(valor)"> {{ valor }} </template>
+            <template v-else>
+                Notas: <ul><li v-for="nota in valor"> {{ nota }} </li></ul>
+            </template>
+        </li>
+    </ul>
+
+
+ 
+</div>
+
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            first_IFcontroll: false,
+            first_SHOWcontroll: false,
+            array: ["breno","brito","cruz","a lenda","o mito"],
+            livro: {
+                titulo: 'O senhor dos Aneis',
+                autor: 'J.R.R. Tolkiens',
+                volume: '3'
+            },
+            aluno: {
+                nome: 'Breno',
+                curso: 'BCC',
+                notas: [1,2,3,4]
+            }
+        },
+        methods: {
+            alternarBoolean() {
+                this.first_SHOWcontroll = !this.first_SHOWcontroll;
+                this.first_IFcontroll = !this.first_IFcontroll;
+            }
+        }
+    })
+</script>
